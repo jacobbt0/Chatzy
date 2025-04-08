@@ -1,6 +1,6 @@
 import User from '../models/auth.js'
 import jwt from 'jsonwebtoken'
-
+import cloudinary from "../lib/cloudinary.js"; 
 
 
 const generateTokens = (userId) => {
@@ -141,6 +141,37 @@ export const logout = async (req, res) => {
 		res.status(500).json({ message: "Server error", error: error.message });
 	}
 }
+
+export const updateProfile = async (req, res) => {
+	try {
+		const { profilePic, name } = req.body;
+		
+		const userId = req.user._id;
+		if(name){
+			let updatedUser = await User.findByIdAndUpdate(
+				userId,
+				{ name: name },
+				{ new: true }
+			)
+			res.status(200).json(updatedUser)
+		}
+
+		if (profilePic) {
+			const uploadResponse = await cloudinary.uploader.upload(profilePic);
+			let updatedUser = await User.findByIdAndUpdate(
+				userId,
+				{ profilePic: uploadResponse.secure_url, },
+				{ new: true }
+			);
+			res.status(200).json(updatedUser);
+		}
+
+		
+	} catch (error) {
+		console.log("error in update profile:", error);
+		res.status(500).json({ message: "Internal server error" });
+	}
+};
 
 export const refreshToken = async (req, res) => {
 	try {

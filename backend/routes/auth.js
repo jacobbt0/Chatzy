@@ -8,8 +8,8 @@ import {
     loginWithGoogle,
     getUser,
     getAllUsers,
+    updateProfile
     
-
 
 } from '../controllers/auth.js'
 import { adminRoute, protectRoute } from '../middleware/middleware.js'
@@ -24,6 +24,7 @@ router.post('/logout', logout)
 router.post('/refresh-token', refreshToken)
 router.get('/profile', protectRoute, getProfile)
 router.get('/get-all-users', protectRoute, adminRoute, getAllUsers)
+router.put("/update-profile", protectRoute, updateProfile)
 
 
 
