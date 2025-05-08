@@ -14,11 +14,11 @@ const io = new Server(server, {
 // used to store online users
 const userSocketMap = {}; // {userId: socketId}
 
+var groupName = null
+
 export function getReceiverSocketId(userId) {
   return userSocketMap[userId];
 }
-
-
 
 io.on("connection", (socket) => {
   console.log("A user connected", socket.id);
@@ -30,11 +30,21 @@ io.on("connection", (socket) => {
   // io.emit() is used to send events to all the connected clients
   io.emit("getOnlineUsers", Object.keys(userSocketMap));
 
-  socket.on("disconnect", () => {
+  socket.on("joinGroup", (group) => {
+    socket.join(group);
+    groupName = group
+    console.log(`User ${userId} joined group ${group}`);
+  });
+
+  // Handle sending a group message
+
+
+  socket.on("disconnect", () => { 
     console.log("A user disconnected", socket.id);
     delete userSocketMap[userId];
     io.emit("getOnlineUsers", Object.keys(userSocketMap));
   }); 
 });
 
-export { io, app, server };
+
+export { io, app, server, groupName };
