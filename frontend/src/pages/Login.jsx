@@ -1,10 +1,10 @@
 import { useState } from "react"
-import { Eye, EyeOff, Phone } from "lucide-react"
+import { Eye, EyeOff, Loader2 } from "lucide-react"
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google'
 import { useAuthStore } from "../stores/useAuthStore"
-import Navbar from "../components/Navbar";
 
-export default function Login() {
+
+const Login = () => {
 
     const [formData, setFormData] = useState({
         phone: "",
@@ -12,7 +12,7 @@ export default function Login() {
     });
 
     const [showPassword, setShowPassword] = useState(false);
-    const { login, loginWithGoogle } = useAuthStore()
+    const { login, loginWithGoogle, loading } = useAuthStore()
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -26,7 +26,7 @@ export default function Login() {
             login(formData)
             setFormData({ phone: "", password: "", });
         } catch (err) {
-            console.log("ERROR IN LOGIN", err)
+          
             toast.error("Login failed. Please try again")
         }
     };
@@ -42,9 +42,9 @@ export default function Login() {
 
     return (
         <div className="flex items-center justify-center min-h-screen bg-base-200">
-            <Navbar/>
+
             <div className="w-full max-w-md p-8 space-y-4 bg-base-100 rounded-xl shadow-xl">
-        
+
                 <h2 className="text-2xl font-bold text-center">Login</h2>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -87,7 +87,14 @@ export default function Login() {
                     </div>
 
                     <button type="submit" className="btn bg-blue-600 textarea-lg text-amber-100 w-full">
-                        Login
+                        {loading ? (
+                            <>
+                                <Loader2 className="h-5 w-5 animate-spin" />
+                                Loading...
+                            </>
+                        ) : (
+                            "Login"
+                        )}
                     </button>
 
                     <div className='mt-5 text-center border-2 rounded-sm'>
@@ -99,7 +106,7 @@ export default function Login() {
                     </div>
 
                     <p className="text-sm text-center">
-                        Create an account? <a className="link text-blue-600" href="/">Sign Up</a>
+                        Create an account? <a className="link text-blue-600" href="/signup">Sign Up</a>
                     </p>
 
                 </form>
@@ -107,3 +114,5 @@ export default function Login() {
         </div>
     );
 }
+
+export default Login

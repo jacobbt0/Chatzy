@@ -1,11 +1,11 @@
 import { useState } from "react"
-import { Eye, EyeOff,  } from "lucide-react"
+import { Eye, EyeOff, Loader2 } from "lucide-react"
 import { GoogleOAuthProvider, GoogleLogin } from '@react-oauth/google'
 import { toast } from "react-hot-toast";
 
 import { useAuthStore } from "../stores/useAuthStore"
 
-export default function Signup() {
+const Signup = () => {
 
     const [formData, setFormData] = useState({
         name: "",
@@ -17,7 +17,7 @@ export default function Signup() {
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
    
-    const { loginWithGoogle, signup} = useAuthStore()
+    const { loginWithGoogle, signup, loading} = useAuthStore()
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -137,7 +137,14 @@ export default function Signup() {
                     </div>
 
                     <button type="submit" className="btn bg-blue-600 textarea-lg text-amber-100 w-full">
-                        Sign Up
+                    {loading ? (
+                            <>
+                                <Loader2 className="h-5 w-5 animate-spin" />
+                                Loading...
+                            </>
+                        ) : (
+                            "Sign Up"
+                        )}
                     </button>
 
                     <div className='mt-5 text-center border-2 rounded-sm'>
@@ -157,3 +164,5 @@ export default function Signup() {
         </div>
     );
 }
+
+export default Signup

@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js"
+    "dev": "nodemon app.js",
+    "start": "node app.js"
   },
   "keywords": [],
   "type": "module",
@@ -14,6 +15,7 @@
   "dependencies": {
     "bcrypt": "^5.1.1",
     "bcryptjs": "^3.0.2",
+    "chatzy": "file:..",
     "cloudinary": "^2.6.0",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
