@@ -51,7 +51,7 @@ const ChatContainer = () => {
 
   if (selectedGroup) {
     return (
-      <div className="flex-1 flex flex-col overflow-auto">
+      <div className="flex-1 flex flex-col overflow-auto bg-gray-200">
         <ChatHeader />
 
         <div className="flex-1 overflow-y-auto p-4 space-y-4">
@@ -100,7 +100,7 @@ const ChatContainer = () => {
   }
 
   return (
-    <div className="flex-1 flex flex-col overflow-auto">
+    <div className="flex-1 flex flex-col overflow-auto bg-gray-200">
       <ChatHeader />
 
       <div className="flex-1 overflow-y-auto p-4 space-y-4">

@@ -27,7 +27,7 @@ const CreateGroup = () => {
                     <input
                         type="text"
                         placeholder="Enter Group Name"
-                        className="input input-bordered w-full text-black text-lg "
+                        className="input input-bordered w-full text-black text-lg bg-gray-50 "
                         value={groupName}
                         onChange={(e) => setGroupName(e.target.value)}
                     />
@@ -38,7 +38,7 @@ const CreateGroup = () => {
                         type="text"
                         value={groupId?.id}
                         readOnly
-                        className="input input-bordered w-full bg-base-100 focus:outline-none focus:ring-0 focus:border-transparent text-lg"
+                        className="input input-bordered w-full bg-gray-50 focus:outline-none focus:ring-0 focus:border-transparent text-lg"
                     />
                     <button onClick={handleCopy} className="btn btn-primary ml-2">
                         <Copy className="w-4 h-4 mr-1" />

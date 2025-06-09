@@ -28,9 +28,9 @@ const Profile = () => {
     }
 
     return (
-        <div className="h-screen pt-20">
+        <div className="h-screen pt-20 bg-gray-200">
             <div className="max-w-2xl mx-auto p-4 py-8">
-                <div className="bg-base-300 rounded-xl p-6 space-y-8">
+                <div className="bg-gray-300 rounded-xl p-6 space-y-8">
                     <div className="text-center">
                         <h1 className="text-2xl font-semibold ">Profile</h1>
                         <p className="mt-2">Your profile information</p>
@@ -59,7 +59,7 @@ const Profile = () => {
                                 <input
                                     type="file"
                                     id="avatar-upload"
-                                    className="hidden"
+                                    className="hidden bg-gray-50"
                                     accept="image/*"
                                     onChange={handleImageUpload}
                                     disabled={isUpdatingProfile}
@@ -78,7 +78,7 @@ const Profile = () => {
                                 Full Name
                             </div>
                             <input type="text" placeholder={user.name} value={fullName}
-                                className="input input-neutral px-4 py-2.5 bg-base-200 rounded-lg border w-full text-lg"
+                                className="input input-neutral px-4 py-2.5 bg-gray-50 rounded-lg border w-full text-lg"
                                 onChange={(e) => setFullName(e.target.value)}
                                 onBlur={handleName}
                                 disabled={isUpdatingProfile}
