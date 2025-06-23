@@ -34,8 +34,8 @@ const Sidebar = () => {
   if (isUsersLoading) return <SidebarSkeleton />;
 
   return (
-    <aside className="h-full w-20 lg:w-72 border-r border-base-300 flex flex-col transition-all duration-200">
-      <div className="border-b border-base-300 w-full p-5">
+    <aside className="h-full w-20 md:w-52 lg:w-72 border-r border-base-300 flex flex-col transition-all duration-200">
+      <div className="border-b border-gray-300 w-full p-5">
         <div className="flex items-center gap-2">
           <Users className="size-6" />
           <span className="font-medium hidden lg:block">Contacts</span>
@@ -47,22 +47,31 @@ const Sidebar = () => {
               type="checkbox"
               checked={showOnlineOnly}
               onChange={(e) => setShowOnlineOnly(e.target.checked)}
-              className="checkbox checkbox-sm"
+              className="checkbox checkbox-sm bg-gray-50"
             />
             <span className="text-sm">Show online only</span>
           </label>
           <span className="text-xs text-zinc-500">({onlineUsers.length > 0 ? onlineUsers.length - 1 : 0} online)</span>
         </div>
 
-        <div className="mt-3 hidden lg:flex items-center gap-2">
+        <div className="mt-3 flex items-center gap-2">
+
           <button
             onClick={() => setCreateGroup(true)}
-            className="btn btn-primary w-full text-white shadow-md transition duration-300 ease-in-out hover:scale-105 hover:shadow-lg gap-2"
+            className="hidden md:flex btn btn-primary w-full text-white shadow-md transition duration-300 ease-in-out hover:scale-105 hover:shadow-lg gap-2"
           >
             <Plus />
             Create / Join Group
           </button>
+
+          <button
+            onClick={() => setCreateGroup(true)}
+            className="flex md:hidden btn btn-primary text-white shadow-md p-2 transition duration-300 ease-in-out hover:scale-105 hover:shadow-lg"
+          >
+            <Plus />
+          </button>
         </div>
+
       </div>
 
       <div className="overflow-y-auto w-full py-3">
@@ -77,7 +86,7 @@ const Sidebar = () => {
             className={`
               w-full p-3 flex items-center gap-3
               hover:bg-base-300 transition-colors
-              ${selectedUser?._id === user._id ? "bg-base-300 ring-1 ring-base-300" : ""}
+              ${selectedUser?._id === user._id ? "bg-gray-300 ring-1 ring-base-300" : ""}
             `}
           >
 

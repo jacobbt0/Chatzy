@@ -1,38 +1,10 @@
-import { useRef } from "react";
-import { X, Phone, Video } from "lucide-react";
+import { X } from "lucide-react";
 import { useAuthStore } from "../stores/useAuthStore";
 import { useChatStore } from "../stores/useChatStore";
-import { useNavigate } from "react-router-dom";
-
 
 const ChatHeader = () => {
   const { selectedUser, setSelectedUser, selectedGroup, setSelectedGroup } = useChatStore();
-  const { onlineUsers, socket } = useAuthStore();
-  const peerConnectionRef = useRef(null);
-  const navigate = useNavigate();
-
-
-  const handleVideoCall = async () => {
-    const stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
-    const peer = new RTCPeerConnection();
-
-    stream.getTracks().forEach((track) => {
-      peer.addTrack(track, stream);
-    });
-
-    const offer = await peer.createOffer();
-    await peer.setLocalDescription(offer);
-
-    // Save for later
-    peerConnectionRef.current = peer;
-
-    socket.emit("call-user", {
-      to: selectedUser._id, // or any recipient ID
-      offer,
-    });
-
-    navigate("/call");
-  };
+  const { onlineUsers } = useAuthStore();
 
 
   return (
@@ -66,18 +38,7 @@ const ChatHeader = () => {
         </div>
 
         <div className="flex gap-7">
-          {selectedUser &&
-            (
-              <div className="flex gap-7">
-                <button className="cursor-pointer" onClick={handleVideoCall}>
-                  <Video />
-                </button>
-                <button className="cursor-pointer">
-                  <Phone />
-                </button>
-              </div>
-            )
-          }
+
           <button onClick={() => {
             setSelectedUser(null)
             setSelectedGroup(null)

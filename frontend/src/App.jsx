@@ -1,5 +1,5 @@
 import { Navigate, Route, Routes } from 'react-router-dom'
-import  { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 
 import Signup from "./pages/Signup"
 import Login from './pages/Login'
@@ -25,8 +25,6 @@ const App = () => {
         <Route path='/login' element={!user ? <Login /> : <Navigate to="/" />} />
         <Route path='/signup' element={!user ? <Signup /> : <Navigate to="/" />} />
         <Route path='/profile' element={user ? <Profile /> : <Navigate to="/" />} />
-    
-
       </Routes>
       <Toaster />
     </div>

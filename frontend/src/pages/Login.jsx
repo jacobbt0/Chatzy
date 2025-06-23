@@ -41,9 +41,9 @@ const Login = () => {
     }
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-base-200">
+        <div className="flex items-center justify-center min-h-screen bg-gray-200 text-black">
 
-            <div className="w-full max-w-md p-8 space-y-4 bg-base-100 rounded-xl shadow-xl">
+            <div className="w-full max-w-md p-8 space-y-4 rounded-xl shadow-xl bg-gray-200">
 
                 <h2 className="text-2xl font-bold text-center">Login</h2>
 
@@ -60,7 +60,7 @@ const Login = () => {
                                 const onlyNums = e.target.value.replace(/[^0-9]/g, "");
                                 setFormData({ ...formData, phone: onlyNums });
                             }}
-                            className="input input-bordered w-full"
+                            className="input input-bordered w-full bg-gray-50"
                             maxLength={10}
                             required
                         />
@@ -72,7 +72,7 @@ const Login = () => {
                             <input
                                 type={showPassword ? "text" : "password"}
                                 name="password"
-                                className="input input-bordered w-full pr-10"
+                                className="input input-bordered w-full pr-10 bg-gray-50"
                                 value={formData.password}
                                 onChange={handleChange}
                                 required

@@ -58,8 +58,8 @@ const Signup = () => {
     }
 
     return (
-        <div className="flex items-center justify-center min-h-screen bg-base-200">
-            <div className="w-full max-w-md p-8 space-y-4 bg-base-100 rounded-xl shadow-xl">
+        <div className="flex items-center justify-center min-h-screen bg-gray-200 text-black">
+            <div className="w-full max-w-md p-8 space-y-4 bg-gray-100 rounded-xl shadow-xl">
                 <h2 className="text-2xl font-bold text-center">Sign Up</h2>
 
                 
@@ -71,7 +71,7 @@ const Signup = () => {
                         <input
                             type="text"
                             name="name"
-                            className="input input-bordered w-full"
+                            className="input input-bordered w-full bg-gray-50"
                             value={formData.name}
                             onChange={handleChange}
                             required
@@ -90,7 +90,7 @@ const Signup = () => {
                                 const onlyNums = e.target.value.replace(/[^0-9]/g, "");
                                 setFormData({ ...formData, phone: onlyNums });
                               }}
-                            className="input input-bordered w-full"
+                            className="input input-bordered w-full bg-gray-50"
                             maxLength={10}
                             required
                         />
@@ -102,7 +102,7 @@ const Signup = () => {
                             <input
                                 type={showPassword ? "text" : "password"}
                                 name="password"
-                                className="input input-bordered w-full pr-10"
+                                className="input input-bordered w-full pr-10 bg-gray-50"
                                 value={formData.password}
                                 onChange={handleChange}
                                 required
@@ -122,7 +122,7 @@ const Signup = () => {
                             <input
                                 type={showConfirmPassword ? "text" : "password"}
                                 name="confirmPassword"
-                                className="input input-bordered w-full pr-10"
+                                className="input input-bordered w-full pr-10 bg-gray-50"
                                 value={formData.confirmPassword}
                                 onChange={handleChange}
                                 required
